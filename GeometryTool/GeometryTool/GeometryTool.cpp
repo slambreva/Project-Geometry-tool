@@ -1,5 +1,18 @@
-﻿// GeometryTool.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿/**
+*
+* Solution to course project # 8
+* Introduction to programming course
+* Faculty of Mathematics and Informatics of Sofia University
+* Winter semester 2023/2024
+*
+* @author Stefania Lambreva
+* @idnumber 9MI0600325
+* @compiler VC
+*
+* project
+*
+*/
+
 
 #include <iostream>
 #include <math.h>
@@ -93,7 +106,7 @@ void parallelLine(double& A, double& B, double& C, double& x, double& y) //coord
     std::cout << A_p << "x + " << B_p << "y + " << C_p << " = 0"<<std::endl;
     return;
 }
-void perpendicularLine(double& A, double& B, double& C, double& x, double& y) //main func
+void perpendicularLine(double& A, double& B, double& C, double& x, double& y) 
 {
     
     define_line(A, B, C);
@@ -104,7 +117,7 @@ void perpendicularLine(double& A, double& B, double& C, double& x, double& y) //
     std::cout<< k_p << "x + " << "-y + " << C_p << " = 0"<<std::endl;
     return;
 }
-void intersectionalPoint(double& A1, double& B1, double& C1, double& A2, double& B2, double& C2) //main func
+void intersectionalPoint(double& A1, double& B1, double& C1, double& A2, double& B2, double& C2) 
 {
     define_line(A1, B1, C1);
     define_line(A2, B2, C2);
@@ -113,12 +126,12 @@ void intersectionalPoint(double& A1, double& B1, double& C1, double& A2, double&
     double quotientB = B1 / B2;
     if (abs(quotientA - quotientB) <= 0.0001)
     {
-        std::cout << "There is no intersectional point!";
+        std::cout << "There is no intersectional point!"<<std::endl;
         return;
     }
     double x = (-C1 * B2 + C2 * B1) / (A1 * B2 - A2 * B1);
     double y = (-A1 * C2 + A2 * C1) / (A1 * B2 - A2 * B1);
-    std::cout << "Coordinates of intersectional point: " << "(" << x << " ; " << y << ")";
+    std::cout << "Coordinates of intersectional point: " << "(" << x << " ; " << y << ")"<<std::endl;
     return;
 }
 double findMiddleX(double x1, double x2)
@@ -136,11 +149,11 @@ void equationOfLineWith2Points(double x1, double y1, double x2, double y2, doubl
 {
     k = (y2 - y1) / (x2 - x1); //uglov koef
     b = y1 - k * x1; // y=kx + b -> kx - y + b = 0
-    //std::cout << k << "x - y + " << b << " = 0";
+    
     return;
 }
 
-void h_inTriangle(double A, double B, double C, double x, double y) //priema koef na prawa i tochka
+void h_inTriangle(double A, double B, double C, double x, double y) 
 {
     double k = -A / B;
     double k_h = -1 / k;
@@ -214,7 +227,7 @@ void allSimetralsInTriangle(double x1, double y1, double x2, double y2, double x
     simetral_inTriangle(k_b, -1, m_b, x_m_b, y_m_b); //simetral of b
     simetral_inTriangle(k_c, -1, m_c, x_m_c, y_m_c); //simetral of c
 }
-void triangle(double& x1, double& y1, double& x2, double& y2, double& x3, double& y3) //main func
+void triangle(double& x1, double& y1, double& x2, double& y2, double& x3, double& y3) 
 {
     define_point(x1, y1);
     define_point(x2, y2);
@@ -228,10 +241,10 @@ void triangle(double& x1, double& y1, double& x2, double& y2, double& x3, double
     allSimetralsInTriangle(x1, y1, x2, y2, x3, y3);
     return;
 }
-//2 за параболи
+
 bool areTwoLinesParallel(double A1, double B1, double C1, double A2, double B2, double C2)
 {
-    if ((abs(A1 / A2 - B1 / B2) <= 0.0001) && (abs(A1 / A2 - C1 / C2) > 0.001)) //A1/A2 = B1/B2 != C1/C2
+    if ((abs(A1 / A2 - B1 / B2) <= 0.0001) && (abs(A1 / A2 - C1 / C2) > 0.001)) // A1/A2 = B1/B2 != C1/C2
     {
         return true;
     }
@@ -264,7 +277,7 @@ void quadrangleType(double& A1, double& B1, double& C1, double& A2, double& B2, 
     define_line(A4, B4, C4);
     if (!areTwoLinesCrossed(A1, B1, C1, A3, B3, C3) || !areTwoLinesCrossed(A1, B1, C1, A4, B4, C4)
         || !areTwoLinesCrossed(A3, B3, C3, A2, B2, C2) || !areTwoLinesCrossed(A4, B4, C4, A2, B2, C2))
-    {//da dobavq oshte proverki?
+    {
         std::cout << "There is no quadrangle" << std::endl;;
         return;
     }
@@ -367,7 +380,7 @@ int main()
     int answer;
     std::cout << "Enter a number: ";
     std::cin >> answer;
-    while (answer != 0)
+    while (answer)
     {
         switch (answer)
         {
@@ -388,13 +401,12 @@ int main()
         case 11: break; //tbi
         case 12: double A3, B3, C3, A4, B4, C4; quadrangleType(A1, B1, C1, A2, B2, C2, A3, B3, C3, A4, B4, C4);
             std::cout << "Enter a number: "; std::cin >> answer; break;
-
-
-        
-            
+        case 0: return 0; break;
+        default: return 0; break;
         }
+        
     }
-    return 0;
+    
 
     
 }
